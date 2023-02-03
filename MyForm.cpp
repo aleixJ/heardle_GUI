@@ -12,5 +12,15 @@ void main(array<String^>^ args)
 	Application::Run(% form);
 }
 
-
-
+void heardleGUI::MyForm::actualitzarPistes()
+{
+	auto managed = gcnew String("Pistes: ");
+	managed += gcnew String(this->play->obtenirPistesDis().ToString());
+	managed += gcnew String("/");
+	managed += gcnew String(this->play->obtenirMaxPistes().ToString());
+	managed += gcnew String("\n");
+	managed += gcnew String("Disposes de ");
+	managed += gcnew String(this->play->segonsDisponibles().ToString());
+	managed += gcnew String(" segons");
+	this->label_pistes->Text = managed;
+}

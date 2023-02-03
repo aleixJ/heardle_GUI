@@ -47,9 +47,9 @@ void song::mostrarOpcions()
 
 }
 
-bool song::guanyador(int resposta)
+bool song::guanyador(std::string resposta)
 {
-	if (resposta == m_num)
+	if (resposta == songsList->at(m_num))
 		return true;
 	return false;
 }
@@ -68,7 +68,7 @@ void song::playSong()
 	while (difftime(time(0), temps_inicial) != segons->at(i_segons))
 	{
 	}
-	PlaySound(TEXT("./songs/void.wav"), NULL, SND_ASYNC);
+	PlaySound(NULL, 0, 0);
 }
 
 bool song::mesSegons()

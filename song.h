@@ -28,7 +28,7 @@ public:
 
 	song();
 	void mostrarOpcions();
-	bool guanyador(int resposta);
+	bool guanyador(std::string resposta);
 	void generarNum();
 	int segonsDisponibles() { return segons->at(i_segons); }
 	void playSong();
@@ -36,6 +36,6 @@ public:
 	void introduccio();
 	void final(bool end);
 	void obtenirResposta(int& resposta, bool flag_repetir);
-
-
+	int obtenirMaxPistes() { return max_pistes; }
+	int obtenirPistesDis() { return pistes; }
 };
