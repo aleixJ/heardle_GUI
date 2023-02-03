@@ -56,9 +56,8 @@ bool song::guanyador(int resposta)
 
 void song::generarNum()
 {
-	//srand(time(NULL));
-	//m_num = rand() % MAX_SONG;
-	m_num = 2;
+	srand(time(NULL));
+	m_num = rand() % MAX_SONG;
 }
 
 void song::playSong()

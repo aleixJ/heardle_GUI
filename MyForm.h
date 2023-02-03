@@ -33,7 +33,10 @@ namespace heardleGUI {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ btn_play;
+	private: System::Windows::Forms::ComboBox^ CBox_list_songs;
+	protected:
+
 	protected:
 
 	private:
@@ -43,34 +46,53 @@ namespace heardleGUI {
 
 		void InitializeComponent(void)
 		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btn_play = (gcnew System::Windows::Forms::Button());
+			this->CBox_list_songs = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
-			// button1
+			// btn_play
 			// 
-			this->button1->Location = System::Drawing::Point(215, 135);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"play";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			this->btn_play->Location = System::Drawing::Point(211, 200);
+			this->btn_play->Name = L"btn_play";
+			this->btn_play->Size = System::Drawing::Size(75, 23);
+			this->btn_play->TabIndex = 0;
+			this->btn_play->Text = L"play";
+			this->btn_play->UseVisualStyleBackColor = true;
+			this->btn_play->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			// 
+			// CBox_list_songs
+			// 
+			this->CBox_list_songs->FormattingEnabled = true;
+			this->CBox_list_songs->Location = System::Drawing::Point(128, 154);
+			this->CBox_list_songs->Name = L"CBox_list_songs";
+			this->CBox_list_songs->Size = System::Drawing::Size(257, 24);
+			this->CBox_list_songs->Sorted = true;
+			this->CBox_list_songs->TabIndex = 1;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(500, 500);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->CBox_list_songs);
+			this->Controls->Add(this->btn_play);
 			this->Name = L"MyForm";
-			this->Text = L"MyForm";
+			this->Text = L"Heardle";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 
 		}
 
 #pragma endregion
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
+	{
+		for (int i = 0; i < this->play->songsList->size(); i++)
+		{
+			//No es pot fer directament perque items->Add nomes accepta System::Object
+			std::string temp = this->play->songsList->at(i);
+			auto managed = gcnew String(temp.c_str());
+			this->CBox_list_songs->Items->Add(managed);
+		}
 	}
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)

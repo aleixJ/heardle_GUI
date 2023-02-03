@@ -11,7 +11,6 @@ ref class song
 {
 private:
 
-	std::vector<std::string>* songsList = new std::vector<std::string>;
 	std::vector<LPCWSTR>* pathList = new std::vector<LPCWSTR>;
 
 	int m_num;
@@ -25,6 +24,8 @@ private:
 	double seconds_since_start;
 
 public:
+	std::vector<std::string>* songsList = new std::vector<std::string>;
+
 	song();
 	void mostrarOpcions();
 	bool guanyador(int resposta);
