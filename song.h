@@ -1,9 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <Windows.h>
 #include <vector>
-#include <time.h>
 
 #define MAX_SONG 11
 
@@ -11,7 +9,7 @@ ref class song
 {
 private:
 
-	std::vector<LPCWSTR>* pathList = new std::vector<LPCWSTR>;
+	std::vector<std::string>* pathList = new std::vector<std::string>;
 
 	int m_num;
 
@@ -27,15 +25,13 @@ public:
 	std::vector<std::string>* songsList = new std::vector<std::string>;
 
 	song();
-	void mostrarOpcions();
-	bool guanyador(std::string resposta);
+	bool comprovar(std::string resposta);
 	void generarNum();
-	int segonsDisponibles() { return segons->at(i_segons); }
-	void playSong();
+	int getSegons() { return segons->at(i_segons); }
 	bool mesSegons();
-	void introduccio();
-	void final(bool end);
 	void obtenirResposta(int& resposta, bool flag_repetir);
-	int obtenirMaxPistes() { return max_pistes; }
-	int obtenirPistesDis() { return pistes; }
+	int getMaxPistes() { return max_pistes; }
+	int getPistes() { return pistes; }
+	std::string getPathSong() { return pathList->at(m_num); }
+
 };

@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <Windows.h>
 #include "song.h"
 #include <msclr\marshal_cppstd.h> //unmanage
 
@@ -38,6 +37,8 @@ namespace heardleGUI {
 	private: System::Windows::Forms::ComboBox^ CBox_list_songs;
 	private: System::Windows::Forms::Button^ btn_comprovar;
 	private: System::Windows::Forms::Button^ btn_pista;
+	private: System::Windows::Forms::Timer^ timer;
+
 
 
 	private: System::Windows::Forms::Label^ label_pistes;
@@ -45,8 +46,13 @@ namespace heardleGUI {
 
 	//per actualitzar les pistes cada cop que es falla o es demana una
 	private: void actualitzarPistes();
-
+	private: SoundPlayer^ SongPlayer;
+	private: void playSong();
 	private: System::ComponentModel::IContainer^ components;
+
+	private: std::string static toStandarString(System::String^ string);
+	private: System::String^ toSystemString(std::string);
+
 	protected:
 
 	protected:
@@ -58,11 +64,13 @@ namespace heardleGUI {
 
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->btn_play = (gcnew System::Windows::Forms::Button());
 			this->CBox_list_songs = (gcnew System::Windows::Forms::ComboBox());
 			this->label_pistes = (gcnew System::Windows::Forms::Label());
 			this->btn_comprovar = (gcnew System::Windows::Forms::Button());
 			this->btn_pista = (gcnew System::Windows::Forms::Button());
+			this->timer = (gcnew System::Windows::Forms::Timer(this->components));
 			this->SuspendLayout();
 			// 
 			// btn_play
@@ -113,6 +121,11 @@ namespace heardleGUI {
 			this->btn_pista->UseVisualStyleBackColor = true;
 			this->btn_pista->Click += gcnew System::EventHandler(this, &MyForm::btn_pista_Click);
 			// 
+			// timer
+			// 
+			this->timer->Interval = 1000;
+			this->timer->Tick += gcnew System::EventHandler(this, &MyForm::timer_Tick);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -137,32 +150,39 @@ namespace heardleGUI {
 		for (int i = 0; i < this->play->songsList->size(); i++)
 		{
 			//No es pot fer directament perque items->Add nomes accepta System::Object
-			std::string temp = this->play->songsList->at(i);
-			auto managed = gcnew String(temp.c_str());
+			auto managed = toSystemString(this->play->songsList->at(i));
 			this->CBox_list_songs->Items->Add(managed);
 		}
 		this->actualitzarPistes();
-
 	}
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		this->play->playSong();
+		playSong();
 	}
+
 	private: System::Void btn_comprovar_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		//comprovem que hi ha algun item seleccionat
 		if (this->CBox_list_songs->SelectedItem != nullptr)
 		{
-			System::String^ managed = this->CBox_list_songs->SelectedItem->ToString();
-			std::string unmanaged = msclr::interop::marshal_as<std::string>(managed);
-			bool temp = this->play->guanyador(unmanaged);
+			std::string resposta;
+			resposta = toStandarString(CBox_list_songs->SelectedItem->ToString());
+			bool temp = this->play->comprovar(resposta);
 		}
 	}
+
 	private: System::Void btn_pista_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->play->mesSegons();
 		this->actualitzarPistes();
+	}
+
+	private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e)
+	{
+		//si s'activa vol dir que la song ja s'ha reproduit el temps pertinent
+		this->timer->Enabled = false;
+		SongPlayer->Stop();
 	}
 };
 

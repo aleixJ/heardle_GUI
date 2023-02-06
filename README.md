@@ -1,10 +1,5 @@
 # HEARDLE GUI
 
-*CONFIGURACION EN EL VISUAL STUDIO*
-
-Propiedades del proyecto -> vinculador -> entrada -> dependencias adicionales -> añadir "Winmm.lib"
-
-Properties -> linker -> input -> additional dependencies -> add "Winmm.lib"
 
 *SONGS*
 
