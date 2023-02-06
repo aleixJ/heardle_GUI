@@ -53,6 +53,8 @@ namespace heardleGUI {
 	private: std::string static toStandarString(System::String^ string);
 	private: System::String^ toSystemString(std::string);
 
+	private: void reiniciar();
+	private: void mostrar_final(bool win);
 	protected:
 
 	protected:
@@ -113,9 +115,9 @@ namespace heardleGUI {
 			// 
 			// btn_pista
 			// 
-			this->btn_pista->Location = System::Drawing::Point(128, 252);
+			this->btn_pista->Location = System::Drawing::Point(248, 230);
 			this->btn_pista->Name = L"btn_pista";
-			this->btn_pista->Size = System::Drawing::Size(100, 31);
+			this->btn_pista->Size = System::Drawing::Size(100, 32);
 			this->btn_pista->TabIndex = 4;
 			this->btn_pista->Text = L"Pista";
 			this->btn_pista->UseVisualStyleBackColor = true;
@@ -168,7 +170,22 @@ namespace heardleGUI {
 		{
 			std::string resposta;
 			resposta = toStandarString(CBox_list_songs->SelectedItem->ToString());
-			bool temp = this->play->comprovar(resposta);
+			bool correcte = this->play->comprovar(resposta);
+			if (correcte)
+			{
+				//ha guanyat
+				mostrar_final(true);
+			}
+			else
+			{
+				//gastem una pista, si no en queden, ha perdut
+				if (!play->mesSegons())
+				{
+					//ha perdut
+					mostrar_final(false);
+				}
+				this->actualitzarPistes();
+			}
 		}
 	}
 
@@ -184,6 +201,15 @@ namespace heardleGUI {
 		this->timer->Enabled = false;
 		SongPlayer->Stop();
 	}
-};
 
+
+private: System::Void btn_exit_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->Close();
+	}
+private: System::Void btn_repetir_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->reiniciar();
+	}
+};
 }
