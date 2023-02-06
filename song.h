@@ -29,9 +29,8 @@ public:
 	void generarNum();
 	int getSegons() { return segons->at(i_segons); }
 	bool mesSegons();
-	void obtenirResposta(int& resposta, bool flag_repetir);
 	int getMaxPistes() { return max_pistes; }
 	int getPistes() { return pistes; }
 	std::string getPathSong() { return pathList->at(m_num); }
-
+	std::string getTitleSong() { return songsList->at(m_num); }
 };

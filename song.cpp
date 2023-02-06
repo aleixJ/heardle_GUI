@@ -66,11 +66,3 @@ bool song::mesSegons()
 	}
 	return false;
 }
-
-void song::obtenirResposta(int& resposta, bool flag_repetir)
-{
-	//'flag_repetir' repetir serveix per saber si la resposta te dues opcions (si es '1' per indicar i s'acaba o no) o mes opcions (si es '0' que es per les respostes de songs)
-	int res_valid = false;
-
-
-}
