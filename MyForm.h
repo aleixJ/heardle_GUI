@@ -3,6 +3,7 @@
 #include "song.h"
 #include <msclr\marshal_cppstd.h> //unmanage
 
+
 namespace heardleGUI {
 
 	using namespace System;
@@ -52,7 +53,7 @@ namespace heardleGUI {
 	//per actualitzar les pistes cada cop que es falla o es demana una
 	private: void actualitzarPistes();
 	private: SoundPlayer^ SongPlayer;
-	private: void playSong();
+	private: void playSong(bool timer);
 	private: System::ComponentModel::IContainer^ components;
 
 	private: std::string static toStandarString(System::String^ string);
@@ -234,7 +235,7 @@ namespace heardleGUI {
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		playSong();
+		playSong(true);
 	}
 
 	private: System::Void btn_comprovar_Click(System::Object^ sender, System::EventArgs^ e)

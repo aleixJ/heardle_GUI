@@ -25,11 +25,14 @@ void heardleGUI::MyForm::actualitzarPistes()
 	this->label_pistes->Text = managed;
 }
 
-void heardleGUI::MyForm::playSong()
+void heardleGUI::MyForm::playSong(bool timer)
 {
 	//assignem al timer el temps disponible. convertir de segons a millis
-	this->timer->Interval = this->play->getSegons() * 1000;
-	this->timer->Enabled = true;
+	if (timer)
+	{
+		this->timer->Interval = this->play->getSegons() * 1000;
+		this->timer->Enabled = true;
+	}
 	auto managed = toSystemString(play->getPathSong());
 	SongPlayer = gcnew SoundPlayer(managed);
 	SongPlayer->Play();
@@ -63,12 +66,13 @@ void heardleGUI::MyForm::reiniciar()
 
 void heardleGUI::MyForm::mostrar_final(bool win)
 {
-	//reproduim tota la song. si ja s'estava reproduint segueix desde aquell punt
+	//mostrem a la pantalla final el nom de la song.
 	label_res_correcta->Text = toSystemString(play->getTitleSong());
+	//reproduim tota la song. si ja s'estava reproduint segueix desde aquell punt
 	if (timer->Enabled == true)
 		timer->Enabled = false;
 	else
-		playSong();
+		playSong(false); //cridem  a la funcio amb 'false' perque volem que es reproduiexi tota
 	if (win)
 	{
 		label_res_partida->Text = "HAS GUANYAT!!!";
