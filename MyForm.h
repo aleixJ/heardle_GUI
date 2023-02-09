@@ -4,8 +4,8 @@
 #include <msclr\marshal_cppstd.h> //unmanage
 
 
-namespace heardleGUI {
-
+namespace heardleGUI
+{
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -14,9 +14,6 @@ namespace heardleGUI {
 	using namespace System::Drawing;
 	using namespace System::Media;
 
-	/// <summary>
-	/// Resumen de MyForm
-	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
@@ -44,8 +41,6 @@ namespace heardleGUI {
 	private: System::Windows::Forms::Button^ btn_repetir;
 	private: System::Windows::Forms::Button^ btn_exit;
 
-
-
 	private: System::Windows::Forms::Label^ label_pistes;
 
 	private : song^ play;
@@ -61,12 +56,6 @@ namespace heardleGUI {
 
 	private: void reiniciar();
 	private: void mostrar_final(bool win);
-	protected:
-
-	protected:
-
-	private:
-
 
 #pragma region Windows Form Designer generated code
 
@@ -218,7 +207,6 @@ namespace heardleGUI {
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->panelPartida->ResumeLayout(false);
 			this->ResumeLayout(false);
-
 		}
 
 #pragma endregion
@@ -277,11 +265,11 @@ namespace heardleGUI {
 		SongPlayer->Stop();
 	}
 
-
 private: System::Void btn_exit_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Close();
 	}
+
 private: System::Void btn_repetir_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->reiniciar();

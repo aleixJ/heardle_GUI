@@ -55,24 +55,26 @@ void heardleGUI::MyForm::reiniciar()
 	//parem la reproduccio de la musica
 	this->SongPlayer->Stop();
 	this->timer->Enabled = false;
+
 	//reinicialitzem la instacia 'play' per poder generar una nova partida (nova song)
 	play = gcnew song();
 	this->actualitzarPistes();
 	panelPartida->Show();
-	//per no mostrar l'ultima resposta introduida
+	//per no mostrar l'ultima resposta introduida a la caixa de text
 	this->CBox_list_songs->ResetText();
-
 }
 
 void heardleGUI::MyForm::mostrar_final(bool win)
 {
-	//mostrem a la pantalla final el nom de la song.
+	//mostrem per pantalla el nom de la song.
 	label_res_correcta->Text = toSystemString(play->getTitleSong());
+
 	//reproduim tota la song. si ja s'estava reproduint segueix desde aquell punt
 	if (timer->Enabled == true)
 		timer->Enabled = false;
 	else
 		playSong(false); //cridem  a la funcio amb 'false' perque volem que es reproduiexi tota
+	
 	if (win)
 	{
 		label_res_partida->Text = "HAS GUANYAT!!!";
@@ -81,5 +83,6 @@ void heardleGUI::MyForm::mostrar_final(bool win)
 	{
 		label_res_partida->Text = "HAS PERDUT...";
 	}
+	//mostrem la pantalla final, es a dir, amaguem el panel de partida
 	panelPartida->Hide();
 }

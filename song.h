@@ -12,8 +12,6 @@ private:
 	std::vector<std::string>* pathList = new std::vector<std::string>;
 
 	int m_num;
-
-	//per poder gestionar el tema de segons de reproduccio i vides.
 	std::vector <int>* segons = new std::vector<int>;
 	int i_segons = 0;
 	int pistes = 0;

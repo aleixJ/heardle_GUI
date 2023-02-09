@@ -24,18 +24,18 @@ song::song()
 	};
 
 	*pathList =
-	{ //es possible que no sigui necesari fer posar el .wav
-	"./songs/NO TE HAS IDO Y YA TE EXTRAÑO.wav",
-	"./songs/– (MENOS).wav",
-	"./songs/ESTUPIDEZ.wav",
-	"./songs/X (POR).wav",
-	"./songs/CORAZÓN SIN VIDA.wav",
-	"./songs// (DIVIDIDO).wav",
-	"./songs/CUANDO TE FUISTE.wav",
-	"./songs/+ (MÁS).wav",
-	"./songs/SI NO VAS A VOLVER.wav",
-	"./songs/= (IGUAL).wav",
-	"./songs/11 RAZONES.wav"
+	{
+		"./songs/NO TE HAS IDO Y YA TE EXTRAÑO.wav",
+		"./songs/– (MENOS).wav",
+		"./songs/ESTUPIDEZ.wav",
+		"./songs/X (POR).wav",
+		"./songs/CORAZÓN SIN VIDA.wav",
+		"./songs// (DIVIDIDO).wav",
+		"./songs/CUANDO TE FUISTE.wav",
+		"./songs/+ (MÁS).wav",
+		"./songs/SI NO VAS A VOLVER.wav",
+		"./songs/= (IGUAL).wav",
+		"./songs/11 RAZONES.wav"
 	};
 
 	*segons = { 2,4,7,10,13 };
